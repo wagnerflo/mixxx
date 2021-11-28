@@ -147,7 +147,9 @@ class AutoDJProcessor : public QObject {
         ADJ_RIGHT_FADING,
         ADJ_ENABLE_P1LOADED,
         ADJ_ENABLE_P1PLAYING,
-        ADJ_DISABLED
+        ADJ_DISABLED,
+        ADJ_LEFT_PAUSING,
+        ADJ_RIGHT_PAUSING
     };
 
     enum AutoDJError {
@@ -164,7 +166,8 @@ class AutoDJProcessor : public QObject {
         FadeAtOutroStart,
         FixedFullTrack,
         FixedSkipSilence,
-        FixedStartCenterSkipSilence
+        FixedStartCenterSkipSilence,
+        SocialDanceMode
     };
 
     AutoDJProcessor(QObject* pParent,
@@ -234,6 +237,8 @@ class AutoDJProcessor : public QObject {
     void controlShuffle(double value);
     void controlSkipNext(double value);
     void controlAddRandomTrack(double value);
+
+    void pauseEnded();
 
   protected:
     // The following virtual signal wrappers are used for testing
@@ -310,6 +315,8 @@ class AutoDJProcessor : public QObject {
     ControlPushButton* m_pFadeNow;
     ControlPushButton* m_pShufflePlaylist;
     ControlPushButton* m_pEnabledAutoDJ;
+
+    QTimer m_pauseTimer;
 
     DISALLOW_COPY_AND_ASSIGN(AutoDJProcessor);
 };

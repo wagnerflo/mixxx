@@ -119,7 +119,8 @@ AutoDJProcessor::AutoDJProcessor(
           m_pAutoDJTableModel(nullptr),
           m_eState(ADJ_DISABLED),
           m_transitionProgress(0.0),
-          m_transitionTime(kTransitionPreferenceDefault) {
+          m_transitionTime(kTransitionPreferenceDefault),
+          m_pauseTimer(this) {
     m_pAutoDJTableModel = new PlaylistTableModel(
             this, pTrackCollectionManager, "mixxx.db.model.autodj");
     m_pAutoDJTableModel->selectPlaylist(iAutoDJPlaylistId);
@@ -181,6 +182,10 @@ AutoDJProcessor::AutoDJProcessor(
 
     m_transitionMode = m_pConfig->getValue(
             ConfigKey(kConfigKey, kTransitionModePreferenceName), TransitionMode::FullIntroOutro);
+
+    m_pauseTimer.setSingleShot(true);
+    connect(&m_pauseTimer, &QTimer::timeout,
+            this, &AutoDJProcessor::pauseEnded);
 }
 
 AutoDJProcessor::~AutoDJProcessor() {
@@ -817,6 +822,15 @@ void AutoDJProcessor::playerPositionChanged(DeckAttributes* pAttributes,
     if (thisPlayPosition >= thisDeck->fadeBeginPos && thisDeck->isFromDeck && !otherDeck->loading) {
         if (m_eState == ADJ_IDLE) {
             if (thisDeckPlaying || thisPlayPosition >= 1.0) {
+                if (m_transitionMode == TransitionMode::SocialDanceMode) {
+                    m_eState = thisDeck->isLeft() ? ADJ_LEFT_PAUSING : ADJ_RIGHT_PAUSING;
+                    thisDeck->stop();
+                    setCrossfader(thisDeck->isLeft() ? 1.0 : -1.0);
+                    emitAutoDJStateChanged(m_eState);
+                    m_pauseTimer.start(std::lround(m_transitionTime * 1000));
+                    removeLoadedTrackFromTopOfQueue(*otherDeck);
+                    return;
+                }
                 // Set the state as FADING.
                 m_eState = thisDeck->isLeft() ? ADJ_LEFT_FADING : ADJ_RIGHT_FADING;
                 m_transitionProgress = 0.0;
@@ -1493,6 +1507,11 @@ void AutoDJProcessor::calculateTransition(DeckAttributes* pFromDeck,
                 getLastSoundSecond(pFromDeck),
                 toDeckStartSecond);
     } break;
+    case TransitionMode::SocialDanceMode: {
+        pFromDeck->fadeBeginPos = outroEnd;
+        pFromDeck->fadeEndPos = outroEnd;
+        pToDeck->startPos = introStart;
+    } break;
     case TransitionMode::FixedFullTrack:
     default: {
         double startPoint;
@@ -1855,4 +1874,29 @@ bool AutoDJProcessor::nextTrackLoaded() {
     }
 
     return loadedTrack == getNextTrackFromQueue();
+}
+
+void AutoDJProcessor::pauseEnded() {
+    DeckAttributes* thisDeck;
+    DeckAttributes* otherDeck;
+
+    if (m_eState == ADJ_LEFT_PAUSING) {
+      thisDeck = m_decks[1];
+      otherDeck = m_decks[0];
+    }
+    else if (m_eState == ADJ_RIGHT_PAUSING) {
+      thisDeck = m_decks[0];
+      otherDeck = m_decks[1];
+    }
+    else {
+      return;
+    }
+
+    m_eState = ADJ_IDLE;
+    thisDeck->play();
+    thisDeck->fadeBeginPos = 1.0;
+    thisDeck->fadeEndPos = 1.0;
+    otherDeck->isFromDeck = false;
+    loadNextTrackFromQueue(*otherDeck);
+    emitAutoDJStateChanged(m_eState);
 }
