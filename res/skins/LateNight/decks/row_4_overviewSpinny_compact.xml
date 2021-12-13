@@ -47,6 +47,11 @@
           </SingletonContainer>
         </Children>
         <Connection>
+          <ConfigKey persist="true">[Skin],socialdj_mode</ConfigKey>
+          <Transform><Not/></Transform>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+        <Connection>
           <ConfigKey persist="true">[Skin],show_rate_controls_compact</ConfigKey>
           <BindProperty>highlight</BindProperty>
         </Connection>

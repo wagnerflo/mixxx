@@ -1,0 +1,119 @@
+<Template>
+  <SetVariable name="BtnType"><Variable name="SubRegion_BtnType"/></SetVariable>
+  <SetVariable name="BtnSize">square</SetVariable>
+
+  <WidgetGroup>
+    <ObjectName>DeckRow_5_LoopCuesTransport</ObjectName>
+    <SizePolicy>me,min</SizePolicy>
+    <Layout>horizontal</Layout>
+    <Children>
+
+      <WidgetGroup><!-- Play + PlayBlink + default dark background -->
+        <Layout>stacked</Layout>
+        <Size>68f,26f</Size>
+        <Children>
+          <Template src="skin:/controls/button_2state_right_display.xml">
+            <SetVariable name="TooltipId">play_cue_set</SetVariable>
+            <SetVariable name="ObjectName">PlayDeck</SetVariable>
+            <SetVariable name="Size">68f,26f</SetVariable>
+            <SetVariable name="BtnSize">play</SetVariable>
+            <SetVariable name="ConfigKey"><Variable name="Group"/>,play</SetVariable>
+            <SetVariable name="ConfigKeyRight"><Variable name="Group"/>,cue_set</SetVariable>
+            <SetVariable name="ConfigKeyDisp"><Variable name="Group"/>,play_latched</SetVariable>
+          </Template>
+          <PushButton>
+            <ObjectName>PreviewIndicator</ObjectName>
+            <Size>68f,26f</Size>
+            <NumberStates>2</NumberStates>
+            <Connection>
+              <ConfigKey><Variable name="Group"/>,play</ConfigKey>
+            </Connection>
+          </PushButton>
+          <PushButton>
+            <ObjectName>PlayIndicator</ObjectName>
+            <Size>68f,26f</Size>
+            <NumberStates>2</NumberStates>
+            <Connection>
+              <ConfigKey><Variable name="Group"/>,play_indicator</ConfigKey>
+            </Connection>
+          </PushButton>
+        </Children>
+      </WidgetGroup><!-- Play + PlayBlink + default dark background -->
+
+      <!--  = 2-10px wide -->
+      <WidgetGroup>
+        <Size>2f,0min</Size>
+        <Connection>
+          <ConfigKey>[Skin],show_intro_outro_cues</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup>
+      <WidgetGroup>
+        <SizePolicy>i,min</SizePolicy>
+        <MaximumSize>8,</MaximumSize>
+        <Connection>
+          <ConfigKey>[Skin],show_intro_outro_cues</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup>
+
+      <!-- Intro -->
+      <WidgetGroup>
+        <Layout>horizontal</Layout>
+        <Size>me,min</Size>
+        <MaximumSize>52,-1</MaximumSize>
+        <Children>
+          <Template src="skin:/controls/button_special_cue.xml">
+            <SetVariable name="CueType">intro_start</SetVariable>
+          </Template>
+          <Template src="skin:/controls/button_special_cue.xml">
+            <SetVariable name="CueType">intro_end</SetVariable>
+          </Template>
+        </Children>
+        <Connection>
+          <ConfigKey>[Skin],show_intro_outro_cues</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup><!-- / Intro -->
+
+      <!--  = 2-10px wide -->
+      <WidgetGroup>
+        <Size>2f,0min</Size>
+        <Connection>
+          <ConfigKey>[Skin],show_intro_outro_cues</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup>
+      <WidgetGroup>
+        <SizePolicy>i,min</SizePolicy>
+        <MaximumSize>8,</MaximumSize>
+        <Connection>
+          <ConfigKey>[Skin],show_intro_outro_cues</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup>
+
+      <!-- Outro -->
+      <WidgetGroup>
+        <Layout>horizontal</Layout>
+        <Size>me,min</Size>
+        <MaximumSize>52,-1</MaximumSize>
+        <Children>
+          <Template src="skin:/controls/button_special_cue.xml">
+            <SetVariable name="CueType">outro_start</SetVariable>
+          </Template>
+          <Template src="skin:/controls/button_special_cue.xml">
+            <SetVariable name="CueType">outro_end</SetVariable>
+          </Template>
+        </Children>
+        <Connection>
+          <ConfigKey>[Skin],show_intro_outro_cues</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup><!-- / Outro -->
+
+      <WidgetGroup><Size>2f,0min</Size></WidgetGroup>
+      <WidgetGroup><SizePolicy>i,min</SizePolicy></WidgetGroup>
+    </Children>
+  </WidgetGroup><!-- DeckRow_5_LoopCuesTransport -->
+</Template>

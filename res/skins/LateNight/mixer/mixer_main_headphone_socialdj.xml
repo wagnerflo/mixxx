@@ -1,0 +1,81 @@
+<Template>
+  <SetVariable name="BtnType"><Variable name="SubRegion_BtnType"/></SetVariable>
+  <SetVariable name="Group">[Master]</SetVariable>
+  <SetVariable name="KnobBg">master</SetVariable>
+  <SetVariable name="KnobIndicator">master</SetVariable>
+  <SetVariable name="ArcRadius"><Variable name="ArcRadiusCompact"/></SetVariable>
+  <SetVariable name="ArcThickness"><Variable name="ArcThicknessBig"/></SetVariable>
+
+  <WidgetGroup>
+    <ObjectName>MasterControls</ObjectName>
+    <SizePolicy>me,min</SizePolicy>
+    <Layout>horizontal</Layout>
+    <Children>
+
+      <WidgetGroup>
+        <SizePolicy>max,min</SizePolicy>
+        <Layout>horizontal</Layout>
+        <Children>
+
+          <WidgetGroup>
+            <Layout>horizontal</Layout>
+            <SizePolicy>min,min</SizePolicy>
+            <Children>
+              <WidgetGroup>
+                <Layout>horizontal</Layout>
+                <SizePolicy>me,min</SizePolicy>
+                <Children>
+                  <Template src="skin:/controls/knob_with_label.xml">
+                    <SetVariable name="TooltipId">master_gain</SetVariable>
+                    <SetVariable name="Size">35f,30f</SetVariable>
+                    <SetVariable name="KnobColor">orange</SetVariable>
+                    <SetVariable name="ArcColor"><Variable name="ArcColorGainLow"/></SetVariable>
+                    <SetVariable name="ArcUnipolar">true</SetVariable>
+                    <SetVariable name="Control">gain</SetVariable>
+                    <SetVariable name="Label">Main</SetVariable>
+                  </Template>
+                </Children>
+              </WidgetGroup>
+              <WidgetGroup><Size>4f,0min</Size></WidgetGroup>
+              <WidgetGroup>
+                <Layout>horizontal</Layout>
+                <SizePolicy>me,min</SizePolicy>
+                <Children>
+                  <Template src="skin:/controls/knob_with_label.xml">
+                    <SetVariable name="TooltipId">balance</SetVariable>
+                    <SetVariable name="Size">35f,30f</SetVariable>
+                    <SetVariable name="KnobColor">red</SetVariable>
+                    <SetVariable name="ArcColor"><Variable name="ArcColorMstBal"/></SetVariable>
+                    <SetVariable name="Control">balance</SetVariable>
+                    <SetVariable name="Label"> Bal</SetVariable>
+                  </Template>
+                </Children>
+              </WidgetGroup>
+              <WidgetGroup><Size>6f,0min</Size></WidgetGroup>
+              <WidgetGroup>
+                <Layout>horizontal</Layout>
+                <SizePolicy>me,min</SizePolicy>
+                <Children>
+                  <Template src="skin:/controls/knob_with_label.xml">
+                    <SetVariable name="TooltipId">headphone_gain</SetVariable>
+                    <SetVariable name="Size">35f,30f</SetVariable>
+                    <SetVariable name="KnobColor">orange</SetVariable>
+                    <SetVariable name="ArcColor"><Variable name="ArcColorGainLow"/></SetVariable>
+                    <SetVariable name="ArcUnipolar">true</SetVariable>
+                    <SetVariable name="Control">headGain</SetVariable>
+                    <SetVariable name="Label">Head</SetVariable>
+                  </Template>
+                </Children>
+              </WidgetGroup>
+            </Children>
+          </WidgetGroup>
+
+        </Children>
+      </WidgetGroup>
+    </Children>
+    <Connection>
+      <ConfigKey persist="true">[Skin],show_main_head_mixer</ConfigKey>
+      <BindProperty>visible</BindProperty>
+    </Connection>
+  </WidgetGroup>
+</Template>

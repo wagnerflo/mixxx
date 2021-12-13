@@ -52,7 +52,28 @@
                 </Children>
               </WidgetGroup><!-- DeckRows234 -->
 
+              <WidgetGroup>
+                <Layout>horizontal</Layout>
+                <Children>
               <Template src="skin:/decks/row_5_transportLoopJump.xml" />
+                </Children>
+                <Connection>
+                  <ConfigKey persist="true">[Skin],socialdj_mode</ConfigKey>
+                  <Transform><Not/></Transform>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </WidgetGroup>
+
+              <WidgetGroup>
+                <Layout>horizontal</Layout>
+                <Children>
+                  <Template src="skin:/decks/row_5_transportLoopJump_socialdj.xml" />
+                </Children>
+                <Connection>
+                  <ConfigKey persist="true">[Skin],socialdj_mode</ConfigKey>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </WidgetGroup>
 
             </Children>
           </WidgetGroup><!-- DeckRows12345 -->

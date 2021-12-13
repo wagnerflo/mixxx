@@ -29,7 +29,40 @@
           <Template src="skin:/mixer/mixer_main_headphone.xml"/>
 
         </Children>
+        <Connection>
+          <ConfigKey persist="true">[Skin],socialdj_mode</ConfigKey>
+          <Transform><Not/></Transform>
+          <BindProperty>visible</BindProperty>
+        </Connection>
       </WidgetGroup><!-- MixerContainer -->
+
+      <WidgetGroup>
+        <ObjectName>MixerContainer</ObjectName>
+        <SizePolicy>me,min</SizePolicy>
+        <Layout>vertical</Layout>
+        <Children>
+
+          <Template src="skin:/mixer/mixer_main_headphone_socialdj.xml"/>
+
+          <WidgetGroup>
+            <ObjectName>MixerDecks</ObjectName>
+            <SizePolicy>max,min</SizePolicy>
+            <Layout>vertical</Layout>
+            <Children>
+              <Template src="skin:/mixer/mixer_2decks_socialdj.xml"/>
+            </Children>
+            <Connection>
+              <ConfigKey persist="true">[Skin],show_main_head_mixer</ConfigKey>
+              <BindProperty>highlight</BindProperty>
+            </Connection>
+          </WidgetGroup>
+
+        </Children>
+        <Connection>
+          <ConfigKey persist="true">[Skin],socialdj_mode</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup>
 
     </Children>
     <Connection>

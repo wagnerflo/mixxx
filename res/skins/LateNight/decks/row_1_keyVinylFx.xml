@@ -42,5 +42,10 @@
       </WidgetGroup>
 
     </Children>
+    <Connection>
+      <ConfigKey persist="true">[Skin],socialdj_mode</ConfigKey>
+      <Transform><Not/></Transform>
+      <BindProperty>visible</BindProperty>
+    </Connection>
   </WidgetGroup><!-- DeckRow_1_KeyVinylFx -->
 </Template>

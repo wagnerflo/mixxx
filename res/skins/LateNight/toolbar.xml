@@ -19,6 +19,19 @@
         <Size>12f,9min</Size>
       </WidgetGroup>
 
+      <Template src="skin:/controls/button_2state.xml">
+        <SetVariable name="ObjectName">GuiToggleButton</SetVariable>
+        <SetVariable name="Size">104f,20f</SetVariable>
+        <SetVariable name="state_0_text">SOCIAL DJ MODE</SetVariable>
+        <SetVariable name="state_1_text">SOCIAL DJ MODE</SetVariable>
+        <SetVariable name="ConfigKey">[Skin],socialdj_mode</SetVariable>
+      </Template>
+
+      <WidgetGroup>
+        <ObjectName>ToolbarSeparator</ObjectName>
+        <Size>12f,9min</Size>
+      </WidgetGroup>
+
       <WidgetGroup><!-- GUI toggles with regular library -->
         <ObjectName>ToolBarSection</ObjectName>
         <SizePolicy>min,min</SizePolicy>

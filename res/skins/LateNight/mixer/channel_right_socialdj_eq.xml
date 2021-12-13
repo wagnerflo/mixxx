@@ -1,0 +1,64 @@
+<Template>
+  <SetVariable name="Group">[Channel<Variable name="ChanNum"/>]</SetVariable>
+  <SetVariable name="EqEffect">[EqualizerRack1_<Variable name="Group"/>_Effect1]</SetVariable>
+
+  <SetVariable name="KnobBg">regular</SetVariable>
+  <SetVariable name="KnobIndicator">regular</SetVariable>
+  <SetVariable name="ArcRadius"><Variable name="ArcRadiusBig"/></SetVariable>
+  <SetVariable name="ArcThickness"><Variable name="ArcThicknessBig"/></SetVariable>
+
+  <WidgetGroup>
+    <ObjectName>MixerChannel_2Decks_Right</ObjectName>
+    <SizePolicy>min,min</SizePolicy>
+    <Layout>vertical</Layout>
+    <Children>
+
+      <WidgetGroup>
+        <ObjectName>ChannelMixer_KnobContainer</ObjectName>
+        <Layout>horizontal</Layout>
+        <SizePolicy>min,min</SizePolicy>
+        <Children>
+          <Template src="skin:/controls/button_2state.xml">
+            <SetVariable name="TooltipId">pfl</SetVariable>
+            <SetVariable name="ObjectName">PflButton</SetVariable>
+            <SetVariable name="Size">26f,26f</SetVariable>
+            <SetVariable name="BtnSize">square</SetVariable>
+            <SetVariable name="ConfigKey"><Variable name="Group"/>,pfl</SetVariable>
+          </Template>
+          <Template src="skin:/controls/knob.xml">
+            <SetVariable name="Size">40f,34f</SetVariable>
+            <SetVariable name="KnobColor">orange</SetVariable>
+            <SetVariable name="ArcColor"><Variable name="ArcColorGain"/></SetVariable>
+            <SetVariable name="Control">pregain</SetVariable>
+            <SetVariable name="TooltipId">pregain</SetVariable>
+          </Template>
+        </Children>
+      </WidgetGroup>
+
+      <WidgetGroup><Size>1min,2f</Size></WidgetGroup>
+
+      <Template src="skin:/mixer/eq_knob_right.xml">
+        <SetVariable name="EqParameter">3</SetVariable>
+        <SetVariable name="EqRange">High</SetVariable>
+      </Template>
+
+      <WidgetGroup><Size>1min,2f</Size></WidgetGroup>
+
+      <Template src="skin:/mixer/eq_knob_right.xml">
+        <SetVariable name="EqParameter">2</SetVariable>
+        <SetVariable name="EqRange">Mid</SetVariable>
+      </Template>
+
+      <WidgetGroup><Size>1min,2f</Size></WidgetGroup>
+
+      <Template src="skin:/mixer/eq_knob_right.xml">
+        <SetVariable name="EqParameter">1</SetVariable>
+        <SetVariable name="EqRange">Low</SetVariable>
+      </Template>
+
+      <!-- Spacer -->
+      <WidgetGroup><Size>0min,0me</Size></WidgetGroup>
+    </Children>
+  </WidgetGroup>
+
+</Template>
