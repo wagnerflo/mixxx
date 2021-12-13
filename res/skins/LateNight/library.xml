@@ -75,7 +75,7 @@
                     <SplitSizes>1,1</SplitSizes>
                     <SplitSizesConfigKey>[Skin],coverArt_splitsize</SplitSizesConfigKey>
                     <Orientation>vertical</Orientation>
-                    <Collapsible>0,0</Collapsible>
+                    <Collapsible>0,1</Collapsible>
                     <Children>
                       <!--Library Tree View-->
                       <WidgetGroup>
